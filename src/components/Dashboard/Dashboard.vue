@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Cities from '@/components/Cities/Cities.vue'
-import Books from '@/components/Books/Books.vue'
+import Cities from '@/features/Cities/Cities.vue'
+import Books from '@/features/Books/Books.vue'
 import { Button } from '@/components/ui/button'
 import {
   Card,

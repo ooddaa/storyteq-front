@@ -6,8 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 type Comparer = (a: any, b: any) => number
-export const sortResults = <T>(values: T[], comparers: Comparer[]): T[] =>
-  comparers.reduce((acc, fn) => acc.sort(fn), values)
+export const sortResults = <T>(values: T[], comparers: Comparer[]): T[] => comparers.reduce((acc, fn) => acc.sort(fn), values)
 
 export const capitalizeWord = (word: string): string =>
   `${word.charAt(0).toUpperCase()}${word.slice(1)}`
@@ -22,4 +21,10 @@ export const getData = async (url: any): Promise<any> => {
   } catch (error) {
     console.error(`Error fetching url: ${url}`, error)
   }
+}
+
+export const identity = <T>(x: T): T => x
+
+export const vFocus = {
+  mounted: (el: HTMLElement) => el.focus(),
 }

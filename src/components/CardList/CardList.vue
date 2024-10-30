@@ -18,12 +18,12 @@ type Card = {
   title: string
   description?: string
 }
+
 interface CardListProps {
   cardList: Card[]
 }
 
 const props = defineProps<CardListProps>()
-console.log(props)
 </script>
 
 <template>

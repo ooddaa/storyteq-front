@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
-import Books from '@/components/Books/Books.vue'
+import Books from '@/features/Books/Books.vue'
 
 describe('Books', () => {
   it('renders properly', () => {
