@@ -12,16 +12,14 @@ import {
 } from '@/components/ui/card'
 import { sortResults, getData } from '@/lib/utils.ts'
 import useMatcher from '@/composables/useMatcher.ts'
+import useBookStore from '@/stores/useBookStore.ts'
+import { type Book } from "@/features/Books/types"
 
-interface Book {
-  title: string
-  author: string
-}
+const bookstore = useBookStore()
+await bookstore.fetchBooks()
 
-const books: Book[] = await getData('../../../data/books.json')
-
-const byTitle = (book: Book): string => book?.title
-const { results, match, pattern } = useMatcher<Book>(books, byTitle)
+const getBookByTitle = (book: Book): string => book?.title
+const { results, match, pattern } = useMatcher<Book>(bookstore.bookList, getBookByTitle)
 
 const handleMatch = () => {
   const newResults = match()

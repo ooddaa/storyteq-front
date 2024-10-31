@@ -17,13 +17,16 @@ export const capitalizeEveryWord = (words: string): string =>
   words.split(' ').map(capitalizeWord).join(' ')
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getData = async (url: string): Promise<any[]> => {
+export const getData = async (url: string): Promise<{ data: any[] }> => {
   try {
-    const response = await fetch(url).then(data => data.json())
-    return response?.data
+    const response = await fetch(url)
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json()
   } catch (error) {
     console.error(`Error fetching url: ${url}`, error)
-    return []
+    return { data: [] }
   }
 }
 

@@ -12,12 +12,13 @@ import {
 import CardList from '@/components/CardList/CardList.vue'
 import { sortResults, capitalizeEveryWord, getData } from '@/lib/utils.ts'
 import useMatcher from '@/composables/useMatcher.ts'
+import useCityStore from '@/stores/useCityStore.ts'
+import { type City } from "@/features/Cities/types"
 
-type City = string
+const citystore = useCityStore()
+await citystore.fetchCities()
 
-const cities: City[] = await getData('../../../data/cities.json')
-
-const { results, match, pattern } = useMatcher<City>(cities)
+const { results, match, pattern } = useMatcher<City>(citystore.cityList)
 
 const handleMatch = () => {
   const newResults = match()
