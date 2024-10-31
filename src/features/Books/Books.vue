@@ -45,19 +45,23 @@ const sortBooksByMatchedSubstringIndex = (a, b) => {
   return matchA?.index - matchB?.index
 }
 
+const BooksTestIds = {
+  input: "books-input-test-id"
+}
 </script>
 
 <template>
-  <div class="_books h-full">
+  <div class="books h-full">
     <Card class="h-full flex flex-col">
       <CardHeader>
         <CardTitle>Books</CardTitle>
-        <CardDescription> Find your next book </CardDescription>
+        <CardDescription> Find a blind date with a book:</CardDescription>
       </CardHeader>
       <CardContent class="space-y-2">
       <InputWithSearchIcon
         v-model="pattern"
         @keyup="handleMatch"
+        :test-id="BooksTestIds.input"
       />
       </CardContent>
       <CardFooter class="flex-grow justify-start items-start overflow:hidden">

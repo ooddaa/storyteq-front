@@ -38,7 +38,7 @@ const props = defineProps<CardListProps>()
         v-for="({ title, description }, index) in props.cardList"
         :key="`card-${index}`"
       >
-        <Card class="w-100 border-none shadow-none">
+        <Card class=".card-list-item w-100 border-none shadow-none">
           <CardHeader>
             <CardTitle>{{ title }}</CardTitle>
             <CardDescription>
