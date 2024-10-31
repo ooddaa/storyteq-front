@@ -2,6 +2,7 @@
 import { defineEmits } from 'vue'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-vue-next'
+import { vFocus } from "@/lib/utils"
 
 interface InputWithSearchIcon {
   placeholder?: string
@@ -31,6 +32,7 @@ const handleKeyup = () => {
         :placeholder="placeholder || 'min 3 characters'"
         class="pl-10"
         :data-test-id="testId"
+        v-focus
       />
       <span
         class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
