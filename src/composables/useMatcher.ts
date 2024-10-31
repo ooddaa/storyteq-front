@@ -21,12 +21,12 @@ const useMatcher = <T>(values: T[], getter: GetterType = identity) => {
       return []
     }
 
-    if (memoizedResults.value.has(pattern)) {
-      results.value = memoizedResults.value.get(pattern)
+    if (memoizedResults.value.has(pattern.value)) {
+      results.value = memoizedResults.value.get(pattern.value)
     }
 
     const matches = values.filter(matcher)
-    if (matches.length) memoizedResults.value.set(pattern, matches)
+    if (matches.length) memoizedResults.value.set(pattern.value, matches)
 
     results.value = matches
     return matches
