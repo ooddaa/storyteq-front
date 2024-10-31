@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue'
 import InputWithSearchIcon from '@/components/Search/InputWithSearchIcon.vue'
 import NoResults from '@/components/Search/NoResults.vue'
 import CardList from '@/components/CardList/CardList.vue'
@@ -11,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { sortResults, vFocus, getData } from '@/lib/utils.ts'
-import useMatcher from "@/composables/useMatcher.ts"
+import { sortResults, getData } from '@/lib/utils.ts'
+import useMatcher from '@/composables/useMatcher.ts'
 
 interface Book {
   title: string
@@ -22,17 +21,21 @@ interface Book {
 const books: Book[] = await getData('../../../data/books.json')
 
 const byTitle = (book: Book): string => book?.title
-let { results, match, pattern } = useMatcher<Book>(books, byTitle)
+const { results, match, pattern } = useMatcher<Book>(books, byTitle)
 
 const handleMatch = () => {
   const newResults = match()
   if (!newResults?.length) return
 
-  const sorted =  sortResults<Book>(newResults, [
-  sortBooksByLocale,
-  sortBooksByMatchedSubstringIndex])
+  const sorted = sortResults<Book>(newResults, [
+    sortBooksByLocale,
+    sortBooksByMatchedSubstringIndex,
+  ])
 
-  const cards = sorted.map(({ title, author }) => ({ title, description: `by ${author}` }))
+  const cards = sorted.map(({ title, author }) => ({
+    title,
+    description: `by ${author}`,
+  }))
   results.value = cards
 }
 
@@ -46,7 +49,7 @@ const sortBooksByMatchedSubstringIndex = (a, b) => {
 }
 
 const BooksTestIds = {
-  input: "books-input-test-id"
+  input: 'books-input-test-id',
 }
 </script>
 
@@ -58,11 +61,11 @@ const BooksTestIds = {
         <CardDescription> Find a blind date with a book:</CardDescription>
       </CardHeader>
       <CardContent class="space-y-2">
-      <InputWithSearchIcon
-        v-model="pattern"
-        @keyup="handleMatch"
-        :test-id="BooksTestIds.input"
-      />
+        <InputWithSearchIcon
+          v-model="pattern"
+          @keyup="handleMatch"
+          :test-id="BooksTestIds.input"
+        />
       </CardContent>
       <CardFooter class="flex-grow justify-start items-start overflow:hidden">
         <NoResults v-if="!results.length" />

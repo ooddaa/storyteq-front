@@ -10,8 +10,8 @@ describe('Dashboard', () => {
     const tabTriggers = wrapper.findAll('.tabs-trigger')
     expect(tabTriggers).toHaveLength(2)
 
-    let booksTab = wrapper.find('.books-test-id')
-    let citiesTab = wrapper.find('.cities-test-id')
+    const booksTab = wrapper.find('.books-test-id')
+    const citiesTab = wrapper.find('.cities-test-id')
     expect(booksTab.text()).toContain('Books')
     expect(citiesTab.text()).toContain('Cities')
 

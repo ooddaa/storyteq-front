@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { Button } from '@/components/ui/button'
-import { Search } from 'lucide-vue-next'
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 type Card = {

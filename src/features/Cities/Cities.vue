@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import InputWithSearchIcon from '@/components/Search/InputWithSearchIcon.vue'
 import NoResults from '@/components/Search/NoResults.vue'
 import {
@@ -11,8 +10,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import CardList from '@/components/CardList/CardList.vue'
-import { sortResults, vFocus, capitalizeEveryWord, getData } from '@/lib/utils.ts'
-import useMatcher from "@/composables/useMatcher.ts"
+import { sortResults, capitalizeEveryWord, getData } from '@/lib/utils.ts'
+import useMatcher from '@/composables/useMatcher.ts'
 
 type City = string
 
@@ -24,15 +23,13 @@ const handleMatch = () => {
   const newResults = match()
   if (!newResults?.length) return
 
-  const sorted =  sortResults<City>(newResults, [
-  sortCitiesByLocale])
+  const sorted = sortResults<City>(newResults, [sortCitiesByLocale])
 
-  const cards = sorted.map((city) => ({ title: capitalizeEveryWord(city) }))
+  const cards = sorted.map(city => ({ title: capitalizeEveryWord(city) }))
   results.value = cards
 }
 
 const sortCitiesByLocale = (a, b) => a.localeCompare(b)
-
 </script>
 
 <template>
@@ -43,15 +40,11 @@ const sortCitiesByLocale = (a, b) => a.localeCompare(b)
         <CardDescription> Find yourself a city! </CardDescription>
       </CardHeader>
       <CardContent class="space-y-2">
-
-      <InputWithSearchIcon
-        v-model="pattern"
-        @keyup="handleMatch"
-      />
+        <InputWithSearchIcon v-model="pattern" @keyup="handleMatch" />
       </CardContent>
       <CardFooter class="flex-grow justify-start items-start overflow:hidden">
-        <NoResults v-if="!results.length" class="bg-green-100"/>
-        <CardList v-else :cardList="results"  />
+        <NoResults v-if="!results.length" class="bg-green-100" />
+        <CardList v-else :cardList="results" />
       </CardFooter>
     </Card>
   </div>

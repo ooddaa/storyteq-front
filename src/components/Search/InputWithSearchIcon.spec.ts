@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import InputWithSearchIcon from '@/components/Search/InputWithSearchIcon.vue'
 import { Input } from '@/components/ui/input'
@@ -9,25 +9,29 @@ describe('InputWithSearchIcon', () => {
     const wrapper = mount(InputWithSearchIcon)
     expect(wrapper.findComponent(Input).exists()).toBe(true)
     expect(wrapper.findComponent(Search).exists()).toBe(true)
-    expect(wrapper.findComponent(Input).attributes('placeholder')).toBe('min 3 characters')
+    expect(wrapper.findComponent(Input).attributes('placeholder')).toBe(
+      'min 3 characters',
+    )
   })
 
   it('renders with custom placeholder', () => {
     const customPlaceholder = 'Search here...'
     const wrapper = mount(InputWithSearchIcon, {
       props: {
-        placeholder: customPlaceholder
-      }
+        placeholder: customPlaceholder,
+      },
     })
-    expect(wrapper.findComponent(Input).attributes('placeholder')).toBe(customPlaceholder)
+    expect(wrapper.findComponent(Input).attributes('placeholder')).toBe(
+      customPlaceholder,
+    )
   })
 
   it('applies custom test ID when provided', () => {
     const testId = 'search-input'
     const wrapper = mount(InputWithSearchIcon, {
       props: {
-        testId
-      }
+        testId,
+      },
     })
     expect(wrapper.findComponent(Input).attributes('data-test-id')).toBe(testId)
   })
@@ -42,11 +46,11 @@ describe('InputWithSearchIcon', () => {
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['test'])
   })
 
- it('emits keyup event with current value', async () => {
+  it('emits keyup event with current value', async () => {
     const wrapper = mount(InputWithSearchIcon, {
       props: {
-        modelValue: 'test'
-      }
+        modelValue: 'test',
+      },
     })
 
     await wrapper.findComponent(Input).trigger('keyup')
@@ -67,8 +71,9 @@ describe('InputWithSearchIcon', () => {
     const wrapper = mount(InputWithSearchIcon, {
       props: {
         modelValue: 'initial',
-        'onUpdate:modelValue': (e: string) => wrapper.setProps({ modelValue: e })
-      }
+        'onUpdate:modelValue': (e: string) =>
+          wrapper.setProps({ modelValue: e }),
+      },
     })
 
     const input = wrapper.findComponent(Input)

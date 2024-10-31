@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue"
+import { defineEmits } from 'vue'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-vue-next'
 
@@ -13,7 +13,7 @@ const emits = defineEmits<{
   'update:modelValue': [value: string]
   keyup: [event: KeyboardEvent]
 }>()
-defineProps<InputWithSearchIcon>();
+defineProps<InputWithSearchIcon>()
 
 const handleKeyup = () => {
   emits('keyup', model.value || '')
@@ -40,4 +40,3 @@ const handleKeyup = () => {
     </div>
   </div>
 </template>
-

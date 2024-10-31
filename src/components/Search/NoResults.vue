@@ -4,14 +4,21 @@ import { cn } from '@/lib/utils'
 interface NoResultsProps {
   class?: HTMLAttributes['class']
 }
-const props = defineProps<NoResultsProps>();
+const props = defineProps<NoResultsProps>()
 </script>
 <template>
-  <TransitionGroup
-    name="list">
-  <div :class="cn('h-full w-full bg-pink-100 flex justify-center items-center rounded-md', props.class)" :key="`no-results`">
+  <TransitionGroup name="list">
+    <div
+      :class="
+        cn(
+          'h-full w-full bg-pink-100 flex justify-center items-center rounded-md',
+          props.class,
+        )
+      "
+      :key="`no-results`"
+    >
       <p class="font-bold">no results 🤔</p>
-  </div>
+    </div>
   </TransitionGroup>
 </template>
 

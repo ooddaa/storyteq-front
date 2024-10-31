@@ -23,20 +23,24 @@ describe('NoResults', () => {
     const additionalClass = 'test-class'
     const wrapper = mount(NoResults, {
       props: {
-        class: additionalClass
-      }
+        class: additionalClass,
+      },
     })
     expect(wrapper.find('div').classes()).toContain(additionalClass)
   })
 
   it('uses TransitionGroup component', () => {
     const wrapper = mount(NoResults)
-    expect(wrapper.findComponent({ name: 'TransitionGroup' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'TransitionGroup' }).exists()).toBe(
+      true,
+    )
   })
 
   it('has correct transition attributes', () => {
     const wrapper = mount(NoResults)
-expect(wrapper.findComponent({ name: 'TransitionGroup' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'TransitionGroup' }).exists()).toBe(
+      true,
+    )
     expect(wrapper.find('div').exists()).toBe(true)
     expect(wrapper.find('p').exists()).toBe(true)
   })
